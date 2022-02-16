@@ -1,7 +1,7 @@
 {
-  "name": "backend",
+  "name": "shopit-backend",
   "version": "1.0.0",
-  "description": "",
+  "description": "server for online fake store",
   "main": "src/server.ts",
   "scripts": {
     "build": "tsc",
@@ -10,7 +10,7 @@
     "start": "node ./src/server.ts"
   },
   "keywords": [],
-  "author": "",
+  "author": "Din Ben Elisha",
   "license": "ISC",
   "dependencies": {
     "@prisma/client": "^3.9.2",
