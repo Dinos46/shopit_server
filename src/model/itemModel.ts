@@ -15,3 +15,13 @@ export interface IItemInput {
   category?: string;
   description?: string;
 }
+
+export interface IFilter {
+  filter: {
+    ctg?: string;
+    price?: number;
+    name?: string;
+  };
+}
+
+export type Args = IFilter | string | {} | IItemInput;

@@ -6,7 +6,6 @@ const prisma: PrismaClient = new PrismaClient();
 //getById
 const getItemById = async (args: any) => {
   const { id } = args;
-  console.log('BYID', id);
   const item = await prisma.item.findUnique({
     where: {
       id,
@@ -17,13 +16,33 @@ const getItemById = async (args: any) => {
 };
 
 //get all items in db
-const getAllItems = async () => {
+const getAllItems = async (args: any) => {
+  const { ctg, maxPrice, minPrice, name } = args.filter;
+  if (ctg || maxPrice || minPrice || name) {
+    console.log('FIND', name);
+    const items = await prisma.item.findMany({
+      where: {
+        category: {
+          contains: ctg || '',
+          mode: 'insensitive',
+        },
+        price: {
+          lte: +maxPrice || Infinity + 0.1,
+          gte: +minPrice || 0.0,
+        },
+        // title: {
+        //   contains: name || '',
+        //   mode: 'insensitive',
+        // },
+      },
+    });
+    return items;
+  }
   const items = await prisma.item.findMany();
-  console.log('FIND', items);
   return items;
 };
 
 export const rootResolvers = {
-  getItemById,
-  getAllItems,
+  item: getItemById,
+  items: getAllItems,
 };

@@ -20,9 +20,16 @@ export const graphqlSchema = buildSchema(
         description: String
     }
 
+    input FilterInput {
+        ctg: String
+        minPrice:Float
+        maxPrice:Float
+        name:String
+    }
+
     type RootQuery {
-        getAllItems: [Item!]!
-        getItemById(id:ID!):Item!
+        items(filter:FilterInput): [Item!]!
+        item(id:ID!):Item!
        
     }
 
