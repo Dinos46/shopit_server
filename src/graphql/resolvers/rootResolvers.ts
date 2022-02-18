@@ -19,20 +19,22 @@ const getItemById = async (args: any) => {
 const getAllItems = async (args: any) => {
   const { ctg, maxPrice, minPrice, name } = args.filter;
   if (ctg || maxPrice || minPrice || name) {
-    console.log('FIND', name);
+    console.log('FIND', ctg);
     const items = await prisma.item.findMany({
       where: {
         category: {
-          contains: ctg || '',
+          equals: ctg || '',
           mode: 'insensitive',
         },
-        price: {
-          lte: +maxPrice || Infinity + 0.1,
-          gte: +minPrice || 0.0,
+        title: {
+          contains: name || '',
+          mode: 'insensitive',
         },
-        // title: {
-        //   contains: name || '',
-        //   mode: 'insensitive',
+        // AND: {
+        //   price: {
+        //     gte: +minPrice,
+        //     lte: +maxPrice,
+        //   },
         // },
       },
     });

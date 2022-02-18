@@ -22,15 +22,14 @@ export const graphqlSchema = buildSchema(
 
     input FilterInput {
         ctg: String
-        minPrice:Float
-        maxPrice:Float
+        minPrice:Int
+        maxPrice:Int
         name:String
     }
 
     type RootQuery {
-        items(filter:FilterInput): [Item!]!
+        items(filter:FilterInput): [Item]!
         item(id:ID!):Item!
-       
     }
 
     type RootMutation {
