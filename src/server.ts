@@ -18,6 +18,11 @@ if (process.env.NODE_ENV === 'production') {
   app.use(cors(corsOptions));
 }
 
+// type httpType = {
+//   req: express.Request;
+//   res: express.Response;
+// };
+
 app.use(
   '/graphql',
   graphqlHTTP({
@@ -25,6 +30,9 @@ app.use(
     rootValue: { ...rootResolvers },
     // false in production
     graphiql: process.env.NODE_ENV !== 'production',
+    context: () => {
+      return { user: 'dino' };
+    },
   })
 );
 

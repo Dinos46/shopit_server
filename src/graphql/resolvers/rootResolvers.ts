@@ -1,10 +1,10 @@
-// import { query,getById } from "../../services/itemService";
 import { PrismaClient } from '@prisma/client';
 
 const prisma: PrismaClient = new PrismaClient();
 
 //getById
-const getItemById = async (args: any) => {
+const getItemById = async (args: any, context: any) => {
+  console.log('FIND', context);
   const { id } = args;
   const item = await prisma.item.findUnique({
     where: {
@@ -16,10 +16,12 @@ const getItemById = async (args: any) => {
 };
 
 //get all items in db
-const getAllItems = async (args: any) => {
-  const { ctg, maxPrice, minPrice, name } = args.filter;
-  if (ctg || maxPrice || minPrice || name) {
-    console.log('FIND', ctg);
+//@ts-ignore
+const getAllItems = async (args: any, context: any) => {
+  if (args.filter) {
+    console.log('FIND WITH ARGUMENTS');
+    //@ts-ignore
+    const { ctg, maxPrice, minPrice, name } = args.filter;
     const items = await prisma.item.findMany({
       where: {
         category: {
@@ -40,6 +42,7 @@ const getAllItems = async (args: any) => {
     });
     return items;
   }
+  console.log('FIND NO ARGUMENTS');
   const items = await prisma.item.findMany();
   return items;
 };
