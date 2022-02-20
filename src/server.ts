@@ -1,4 +1,3 @@
-// import * as path from 'path';
 import * as cors from 'cors';
 import * as express from 'express';
 import { graphqlHTTP } from 'express-graphql';
@@ -15,20 +14,6 @@ if (process.env.NODE_ENV !== 'production') {
   };
   app.use(cors(corsOptions));
 }
-// if (process.env.NODE_ENV === 'production') {
-//   app.use(express.static(path.resolve(__dirname, 'public')));
-// } else {
-//   const corsOptions = {
-//     origin: ['http://127.0.0.1:3000', 'http://localhost:3000'],
-//     credentials: true,
-//   };
-//   app.use(cors(corsOptions));
-// }
-
-// type httpType = {
-//   req: express.Request;
-//   res: express.Response;
-// };
 
 app.use(
   '/graphql',
@@ -43,6 +28,10 @@ app.use(
     },
   })
 );
+
+app.get('/**', (_, res: express.Response) => {
+  res.send('shopit fake store');
+});
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`server is running on port ${PORT}`));
