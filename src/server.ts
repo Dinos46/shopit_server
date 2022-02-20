@@ -29,7 +29,8 @@ app.use(
     schema: graphqlSchema,
     rootValue: { ...rootResolvers },
     // false in production
-    graphiql: process.env.NODE_ENV !== 'production',
+    // graphiql: process.env.NODE_ENV !== 'production',
+    graphiql: true,
     context: () => {
       return { user: 'dino' };
     },
