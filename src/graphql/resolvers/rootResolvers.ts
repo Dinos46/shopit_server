@@ -11,7 +11,6 @@ const getItemById = async (args: any, context: any) => {
       id,
     },
   });
-  console.log('BYID', item);
   return item;
 };
 
