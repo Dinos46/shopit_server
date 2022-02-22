@@ -15,6 +15,11 @@ if (process.env.NODE_ENV !== 'production') {
   app.use(cors(corsOptions));
 }
 
+// app.use((req: express.Request, _, next: express.NextFunction) => {
+//   req.body.user = 'dino';
+//   next();
+// });
+
 app.use(
   '/graphql',
   graphqlHTTP({
@@ -22,9 +27,8 @@ app.use(
     rootValue: { ...rootResolvers },
     // false in production
     // graphiql: process.env.NODE_ENV !== 'production',
-    graphiql: true,
-    context: () => {
-      return { user: 'dino' };
+    graphiql: {
+      headerEditorEnabled: true,
     },
   })
 );

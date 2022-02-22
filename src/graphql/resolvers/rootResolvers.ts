@@ -17,8 +17,8 @@ const getItemById = async (args: any, context: any) => {
 //get all items in db
 //@ts-ignore
 const getAllItems = async (args: any, context: any) => {
+  console.log('FIND WITH ARGUMENTS', context);
   if (args.filter) {
-    console.log('FIND WITH ARGUMENTS');
     //@ts-ignore
     const { ctg, maxPrice, minPrice, name } = args.filter;
     const items = await prisma.item.findMany({
