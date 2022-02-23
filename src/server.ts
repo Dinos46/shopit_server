@@ -15,11 +15,6 @@ app.use(express.json());
 // }
 app.use(cors());
 
-// app.use((req: express.Request, _, next: express.NextFunction) => {
-//   req.body.user = 'dino';
-//   next();
-// });
-
 app.use(
   '/graphql',
   graphqlHTTP({
