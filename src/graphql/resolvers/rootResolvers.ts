@@ -16,31 +16,32 @@ const getItemById = async (args: any, context: any) => {
 
 //get all items in db
 //@ts-ignore
-const getAllItems = async (args: any, context: any) => {
-  // if (!!args.filter.ctg) {
-  //   console.log('FIND WITH ARGUMENTS');
-  //   //@ts-ignore
-  //   const { ctg, maxPrice, minPrice, name } = args.filter;
-  //   const items = await prisma.item.findMany({
-  //     where: {
-  //       category: {
-  //         equals: ctg || '',
-  //         mode: 'insensitive',
-  //       },
-  //       title: {
-  //         contains: name || '',
-  //         mode: 'insensitive',
-  //       },
-  //       // AND: {
-  //       //   price: {
-  //       //     gte: +minPrice,
-  //       //     lte: +maxPrice,
-  //       //   },
-  //       // },
-  //     },
-  //   });
-  //   return items;
-  // }
+const getAllItems = async ({ filter }: any, context: any) => {
+  const ctg = filter?.ctg || '';
+  const name = filter?.name || '';
+
+  if (ctg || name) {
+    console.log('FIND WITH ARGUMENTS', ctg, name);
+    const items = await prisma.item.findMany({
+      where: {
+        category: {
+          equals: ctg,
+          mode: 'insensitive',
+        },
+        title: {
+          contains: name,
+          mode: 'insensitive',
+        },
+        // AND: {
+        //   price: {
+        //     gte: +minPrice,
+        //     lte: +maxPrice,
+        //   },
+        // },
+      },
+    });
+    return items;
+  }
   const items = await prisma.item.findMany();
   return items;
 };
