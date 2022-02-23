@@ -17,32 +17,31 @@ const getItemById = async (args: any, context: any) => {
 //get all items in db
 //@ts-ignore
 const getAllItems = async (args: any, context: any) => {
-  if (!!args.filter.ctg) {
-    console.log('FIND WITH ARGUMENTS');
-    //@ts-ignore
-    const { ctg, maxPrice, minPrice, name } = args.filter;
-    const items = await prisma.item.findMany({
-      where: {
-        category: {
-          equals: ctg || '',
-          mode: 'insensitive',
-        },
-        title: {
-          contains: name || '',
-          mode: 'insensitive',
-        },
-        // AND: {
-        //   price: {
-        //     gte: +minPrice,
-        //     lte: +maxPrice,
-        //   },
-        // },
-      },
-    });
-    return items;
-  }
+  // if (!!args.filter.ctg) {
+  //   console.log('FIND WITH ARGUMENTS');
+  //   //@ts-ignore
+  //   const { ctg, maxPrice, minPrice, name } = args.filter;
+  //   const items = await prisma.item.findMany({
+  //     where: {
+  //       category: {
+  //         equals: ctg || '',
+  //         mode: 'insensitive',
+  //       },
+  //       title: {
+  //         contains: name || '',
+  //         mode: 'insensitive',
+  //       },
+  //       // AND: {
+  //       //   price: {
+  //       //     gte: +minPrice,
+  //       //     lte: +maxPrice,
+  //       //   },
+  //       // },
+  //     },
+  //   });
+  //   return items;
+  // }
   const items = await prisma.item.findMany();
-  console.log('FIND NO ARGUMENTS', items);
   return items;
 };
 
