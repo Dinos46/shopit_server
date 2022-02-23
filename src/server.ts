@@ -7,13 +7,13 @@ import { rootResolvers } from './graphql/resolvers/rootResolvers';
 const app = express();
 app.use(express.json());
 
-if (process.env.NODE_ENV !== 'production') {
-  const corsOptions = {
-    origin: ['http://127.0.0.1:3000', 'http://localhost:3000'],
-    credentials: true,
-  };
-  app.use(cors(corsOptions));
-}
+// if (process.env.NODE_ENV !== 'production') {
+//   const corsOptions = {
+//     origin: ['http://127.0.0.1:3000', 'http://localhost:3000'],
+//     credentials: true,
+//   };
+// }
+app.use(cors());
 
 // app.use((req: express.Request, _, next: express.NextFunction) => {
 //   req.body.user = 'dino';
