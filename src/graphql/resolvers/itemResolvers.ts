@@ -20,30 +20,35 @@ const getAllItems = async ({ filter }: any, context: any) => {
   const ctg = filter?.ctg || '';
   const name = filter?.name || '';
 
-  if (ctg || name) {
-    console.log('FIND WITH ARGUMENTS', ctg, name);
-    const items = await prisma.item.findMany({
-      where: {
-        category: {
-          equals: ctg,
-          mode: 'insensitive',
+  try {
+    if (ctg || name) {
+      console.log('FIND WITH ARGUMENTS', ctg, name);
+      const items = await prisma.item.findMany({
+        where: {
+          category: {
+            equals: ctg,
+            mode: 'insensitive',
+          },
+          title: {
+            contains: name,
+            mode: 'insensitive',
+          },
+          // AND: {
+          //   price: {
+          //     gte: +minPrice,
+          //     lte: +maxPrice,
+          //   },
+          // },
         },
-        title: {
-          contains: name,
-          mode: 'insensitive',
-        },
-        // AND: {
-        //   price: {
-        //     gte: +minPrice,
-        //     lte: +maxPrice,
-        //   },
-        // },
-      },
-    });
+      });
+      return items;
+    }
+    const items = await prisma.item.findMany();
     return items;
+  } catch (err) {
+    console.log(`error in get all items resolver`);
+    throw new Error(`error in get all items resolver ${err}`);
   }
-  const items = await prisma.item.findMany();
-  return items;
 };
 
 export const itemResolvers = {
