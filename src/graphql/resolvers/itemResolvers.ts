@@ -46,7 +46,7 @@ const getAllItems = async ({ filter }: any, context: any) => {
   return items;
 };
 
-export const rootResolvers = {
+export const itemResolvers = {
   item: getItemById,
   items: getAllItems,
 };

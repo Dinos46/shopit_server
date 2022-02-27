@@ -1,8 +1,9 @@
 import * as cors from 'cors';
 import * as express from 'express';
 import { graphqlHTTP } from 'express-graphql';
-import { graphqlSchema } from './graphql/shcema/itemSchema';
-import { rootResolvers } from './graphql/resolvers/rootResolvers';
+import { itemResolvers } from './graphql/resolvers/itemResolvers';
+import { authResolvers } from './graphql/resolvers/authResolvers';
+import { rootSchema } from './graphql/shcema/rootSchema';
 
 const app = express();
 app.use(express.json());
@@ -18,8 +19,8 @@ app.use(cors());
 app.use(
   '/graphql',
   graphqlHTTP({
-    schema: graphqlSchema,
-    rootValue: { ...rootResolvers },
+    schema: rootSchema,
+    rootValue: { ...itemResolvers, ...authResolvers },
     // false in production
     // graphiql: process.env.NODE_ENV !== 'production',
     graphiql: {

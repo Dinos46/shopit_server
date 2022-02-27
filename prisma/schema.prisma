@@ -19,5 +19,12 @@ model Item {
   description String @db.Text
 }
 
+model User {
+  id String @id @default(uuid())
+  image String @db.VarChar(255)
+  email String @db.VarChar(255)
+  username  String @db.VarChar(255)
+}
+
 
 
