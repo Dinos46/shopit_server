@@ -12,16 +12,14 @@ const register = async (args: any) => {
   return user;
 };
 
-const login = async (args: any) => {
+const getCurrentUser = async (args: any) => {
   try {
     const user = await prisma.user.findUnique({
       where: {
-        id: args.id,
+        email: args.email,
       },
     });
-    if (!user) {
-      throw new Error('user not found');
-    }
+    console.log(user);
     return user;
   } catch (err) {
     console.log(`error in login resolver`);
@@ -30,6 +28,6 @@ const login = async (args: any) => {
 };
 
 export const authResolvers = {
-  user: login,
+  user: getCurrentUser,
   addUser: register,
 };

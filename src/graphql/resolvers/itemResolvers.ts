@@ -22,7 +22,7 @@ const getAllItems = async ({ filter }: any, context: any) => {
 
   try {
     if (ctg || name) {
-      console.log('FIND WITH ARGUMENTS', ctg, name);
+      console.log('FIND WITH ARGUMENTS');
       const items = await prisma.item.findMany({
         where: {
           category: {

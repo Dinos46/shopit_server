@@ -20,10 +20,10 @@ model Item {
 }
 
 model User {
-  id String @id @default(uuid())
+  id String @id @default(uuid()) 
   image String? @db.VarChar(255)
-  email String @db.VarChar(255)
-  username  String @db.VarChar(255)
+  email String @db.VarChar(255) @unique
+  username  String @db.VarChar(255) @unique
 }
 
 

@@ -9,12 +9,12 @@ export const rootSchema = buildSchema(`
 type RootQuery {
     items(filter:FilterInput): [Item]!
     item(id:ID!):Item!
-    user(id:ID!):User
 }
 
 type RootMutation {
     createItem(itemInput:ItemInput):String!
     addUser(userInput:UserInput):User!
+    user(email:String!):User
 }
 
 schema {
