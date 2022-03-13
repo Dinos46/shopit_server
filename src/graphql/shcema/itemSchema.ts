@@ -1,4 +1,8 @@
+import { reviewSchema } from "./reviewSchema";
+
 export const itemSchema = `
+    ${reviewSchema}
+
     type Item {
         id: ID!
         image:String!
@@ -6,6 +10,7 @@ export const itemSchema = `
         title: String!
         category: String!
         description: String!
+        reviews: [Review!]
     }
 
     input ItemInput {

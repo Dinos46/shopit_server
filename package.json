@@ -6,7 +6,7 @@
   "scripts": {
     "build": "tsc",
     "dev": "set NODE_ENV=development&&ts-node ./src/server.ts",
-    "watch": "set NODE_ENV=development&&nodemon --watch src/** --ext ts,json --ignore src/**/*.spec.ts --exec ts-node  ./src/server.ts ",
+    "watch": "set NODE_ENV=development&&nodemon --watch src/** --ext ts,json --ignore src/**/*.spec.ts --exec ts-node-dev  ./src/server.ts ",
     "start": "node ./dist/server.js"
   },
   "keywords": [],
@@ -28,8 +28,8 @@
     "@types/node": "^16.10.2",
     "@types/pg": "^8.6.4",
     "nodemon": "^2.0.13",
-    "prisma": "^3.9.2",
-    "ts-node": "^10.2.1",
-    "typescript": "^4.4.3"
+    "prisma": "^3.10.0",
+    "typescript": "^4.4.3",
+    "ts-node-dev": "^1.1.8"
   }
 }

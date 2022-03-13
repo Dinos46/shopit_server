@@ -1,25 +1,27 @@
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient } from "@prisma/client";
+import { auth } from "../../services/firebaseService";
 
 const prisma = new PrismaClient();
 
-const register = async (args: any) => {
-  const user = await prisma.user.create({
-    data: {
-      email: args.userInput.email,
-      username: args.userInput.username,
-    },
-  });
-  return user;
+const _validateRequest = async (headers: any) => {
+  if (!headers["authorization"]) {
+    return null;
+  }
+  const token = headers["authorization"].split(" ")[1];
+  const idToken = await auth.verifyIdToken(token);
+  // console.log("headers", idToken);
+  return idToken;
 };
 
-const getCurrentUser = async (args: any) => {
+const register = async (args: any) => {
   try {
-    const user = await prisma.user.findUnique({
-      where: {
-        email: args.email,
+    const user = await prisma.user.create({
+      data: {
+        email: args.userInput.email,
+        username: args.userInput.username,
+        image: "",
       },
     });
-    console.log(user);
     return user;
   } catch (err) {
     console.log(`error in login resolver`);
@@ -27,7 +29,29 @@ const getCurrentUser = async (args: any) => {
   }
 };
 
+const logIn = async (args: any, context: any) => {
+  // console.log("context.headers", context.headers);
+  try {
+    const isValid = await _validateRequest(context.headers);
+    if (isValid) {
+      const user = await prisma.user.findUnique({
+        where: {
+          email: args.email,
+        },
+      });
+      if (user) {
+        return user;
+      }
+      return null;
+    }
+    throw new Error("not authorized");
+  } catch (err) {
+    console.log(`error in login resolver`, err);
+    throw new Error(`error in login resolver ${err}`);
+  }
+};
+
 export const authResolvers = {
-  user: getCurrentUser,
+  getUser: logIn,
   addUser: register,
 };

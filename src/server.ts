@@ -1,9 +1,9 @@
-import * as cors from 'cors';
-import * as express from 'express';
-import { graphqlHTTP } from 'express-graphql';
-import { itemResolvers } from './graphql/resolvers/itemResolvers';
-import { authResolvers } from './graphql/resolvers/authResolvers';
-import { rootSchema } from './graphql/shcema/rootSchema';
+import * as cors from "cors";
+import * as express from "express";
+import { graphqlHTTP } from "express-graphql";
+import { itemResolvers } from "./graphql/resolvers/itemResolvers";
+import { authResolvers } from "./graphql/resolvers/authResolvers";
+import { rootSchema } from "./graphql/shcema/rootSchema";
 
 const app = express();
 app.use(express.json());
@@ -17,20 +17,21 @@ app.use(express.json());
 app.use(cors());
 
 app.use(
-  '/graphql',
+  "/graphql",
   graphqlHTTP({
     schema: rootSchema,
     rootValue: { ...itemResolvers, ...authResolvers },
     // false in production
     // graphiql: process.env.NODE_ENV !== 'production',
+
     graphiql: {
       headerEditorEnabled: true,
     },
   })
 );
 
-app.get('/**', (_, res: express.Response) => {
-  res.send('shopit fake store');
+app.get("/**", (_, res: express.Response) => {
+  res.send("shopit fake store");
 });
 
 const PORT = process.env.PORT || 5000;
