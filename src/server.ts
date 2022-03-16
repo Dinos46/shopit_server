@@ -28,7 +28,7 @@ app.use(
       headerEditorEnabled: true,
     },
   })
-);
+); 
 
 app.get("/**", (_, res: express.Response) => {
   res.send("shopit fake store");
