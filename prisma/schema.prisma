@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -17,7 +14,8 @@ model Item {
   title       String @db.VarChar(255)
   category    String @db.VarChar(255)
   description String @db.Text
-  reviews Review[]
+  reviews Review[] 
+  cart Cart_Item?
 }
 
 model User {
@@ -25,9 +23,12 @@ model User {
   image    String? @db.VarChar(255)
   email    String  @unique @db.VarChar(255)
   username String  @unique @db.VarChar(255)
+  token String  @unique @db.VarChar(255)
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now()) @updatedAt 
   reviews Review[]
+  role Role @default(user)
+  cart Cart_Item[]
 }
 
 model Review {
@@ -41,4 +42,19 @@ model Review {
   item Item @relation(fields: [itemId],references: [id])
   userId String
   itemId String
+}
+
+
+model Cart_Item {
+  id       String  @id @default(uuid())
+  quantity Int 
+  item Item @relation(fields: [itemId],references: [id])
+  user User @relation(fields: [userId],references: [id])
+  itemId String
+  userId String
+}
+
+enum Role {
+    admin
+    user
 }

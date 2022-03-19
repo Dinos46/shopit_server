@@ -1,3 +1,5 @@
+import { IReview } from "./review.model";
+
 export interface IItem {
   id?: string;
   image: string;
@@ -5,4 +7,5 @@ export interface IItem {
   title: string;
   category: string;
   description: string;
+  reviews: IReview[];
 }
