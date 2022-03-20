@@ -1,5 +1,5 @@
-import * as cors from "cors";
-import * as express from "express";
+import cors from "cors";
+import express from "express";
 import { graphqlHTTP } from "express-graphql";
 import { itemResolvers } from "./graphql/resolvers/itemResolvers";
 import { authResolvers } from "./graphql/resolvers/authResolvers";
@@ -28,11 +28,13 @@ app.use(
       headerEditorEnabled: true,
     },
   })
-); 
+);
 
 app.get("/**", (_, res: express.Response) => {
   res.send("shopit fake store");
 });
 
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`server is running on port ${PORT}`));
+app.listen(PORT, () =>
+  console.log(`server is running on port http://localhost:${PORT}`)
+);

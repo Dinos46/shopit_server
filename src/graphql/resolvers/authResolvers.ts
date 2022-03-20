@@ -17,9 +17,10 @@ const register = async (args: any) => {
   try {
     const user = await prisma.user.create({
       data: {
-        email: args.userInput.email,
-        username: args.userInput.username,
+        email: args.userInput.email as string,
+        username: args.userInput.username as string,
         image: "",
+        
       },
     });
     return user;
