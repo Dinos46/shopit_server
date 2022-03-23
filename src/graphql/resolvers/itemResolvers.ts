@@ -5,12 +5,14 @@ const prisma: PrismaClient = new PrismaClient();
 //getById
 //@ts-ignore
 const getItemById = async (args: any, context: any) => {
+  console.log("FIND BY ID");
   const { id } = args;
   const item = await prisma.item.findUnique({
     where: {
       id,
     },
   });
+
   return item;
 };
 

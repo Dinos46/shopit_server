@@ -8,7 +8,7 @@ export const rootSchema = buildSchema(`
     
 type RootQuery {
     items(filter:FilterInput): [Item]!
-    item(id:ID!):Item!
+    item(id:ID!):Item
     getUser(email:String!):User
 }
 
