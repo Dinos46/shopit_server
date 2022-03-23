@@ -1,4 +1,4 @@
-import { auth } from "@/services/firebaseService";
+import { auth } from "../../services/firebaseService";
 import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
@@ -13,13 +13,15 @@ const _validateRequest = async (headers: any) => {
   return idToken;
 };
 
-const register = async (args: any) => {
+const register = async (args: any, context: any) => {
+  const token = context.headers["authorization"].split(" ")[1];
   try {
     const user = await prisma.user.create({
       data: {
         email: args.userInput.email as string,
         username: args.userInput.username as string,
         image: "",
+        token,
       },
     });
     return user;

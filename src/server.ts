@@ -1,9 +1,9 @@
 import cors from "cors";
 import express from "express";
 import { graphqlHTTP } from "express-graphql";
-import { authResolvers } from "@/graphql/resolvers/authResolvers";
-import { itemResolvers } from "@/graphql/resolvers/itemResolvers";
-import { rootSchema } from "@/graphql/shcema/rootSchema";
+import { rootSchema } from "./graphql/shcema/rootSchema";
+import { itemResolvers } from "./graphql/resolvers/itemResolvers";
+import { authResolvers } from "./graphql/resolvers/authResolvers";
 
 const app = express();
 app.use(express.json());
