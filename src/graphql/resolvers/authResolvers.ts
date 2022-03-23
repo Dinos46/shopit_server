@@ -1,5 +1,5 @@
+import { auth } from "@/services/firebaseService";
 import { PrismaClient } from "@prisma/client";
-import { auth } from "../../services/firebaseService";
 
 const prisma = new PrismaClient();
 
@@ -20,7 +20,6 @@ const register = async (args: any) => {
         email: args.userInput.email as string,
         username: args.userInput.username as string,
         image: "",
-        
       },
     });
     return user;
