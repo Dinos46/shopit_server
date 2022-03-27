@@ -1,4 +1,5 @@
 export const reviewSchema = `
+    
     type Review {
         id:ID!
         title:String!
@@ -7,5 +8,6 @@ export const reviewSchema = `
         updatedAt:String!
         userId:String
         itemId:String
+        user: User!
     }
 `;

@@ -11,6 +11,13 @@ const getItemById = async (args: any, context: any) => {
     where: {
       id,
     },
+    include: {
+      reviews: {
+        include: {
+          user: true,
+        },
+      },
+    },
   });
 
   return item;
@@ -28,7 +35,11 @@ const getAllItems = async ({ filter }: any) => {
       console.log("FIND WITH ARGUMENTS");
       const items = await prisma.item.findMany({
         include: {
-          reviews: true,
+          reviews: {
+            include: {
+              user: true,
+            },
+          },
         },
         where: {
           category: {
@@ -47,10 +58,14 @@ const getAllItems = async ({ filter }: any) => {
       });
       return items;
     }
-    console.log("FIND WITHOUT ARGUMENTS");
     const items = await prisma.item.findMany({
-      include: { reviews: true },
+      include: {
+        reviews: {
+          include: { user: true },
+        },
+      },
     });
+    console.log("FIND WITHOUT ARGUMENTS", items);
 
     return items;
   } catch (err) {

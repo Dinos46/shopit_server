@@ -1,7 +1,4 @@
-import { reviewSchema } from "./reviewSchema";
-
 export const itemSchema = `
-    ${reviewSchema}
 
     type Item {
         id: ID!

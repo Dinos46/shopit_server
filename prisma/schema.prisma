@@ -25,7 +25,7 @@ model User {
   username String  @unique @db.VarChar(255)
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now()) @updatedAt 
-  reviews Review[]
+  reviews Review[] 
   role Role @default(user)
   cart Cart_Item[]
 }

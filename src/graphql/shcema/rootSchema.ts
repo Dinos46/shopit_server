@@ -1,10 +1,12 @@
 import { buildSchema } from "graphql";
 import { authSchema } from "./authSchema";
 import { itemSchema } from "./itemSchema";
+import { reviewSchema } from "./reviewSchema";
 
 export const rootSchema = buildSchema(`
     ${itemSchema}
     ${authSchema}
+    ${reviewSchema}
     
 type RootQuery {
     items(filter:FilterInput): [Item]!
