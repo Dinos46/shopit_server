@@ -9,19 +9,16 @@ const _validateRequest = async (headers: any) => {
   }
   const token = headers["authorization"].split(" ")[1];
   const idToken = await auth.verifyIdToken(token);
-  // console.log("headers", idToken);
   return idToken;
 };
 
-const register = async (args: any, context: any) => {
-  const token = context.headers["authorization"].split(" ")[1];
+const register = async (args: any) => {
   try {
     const user = await prisma.user.create({
       data: {
         email: args.userInput.email as string,
         username: args.userInput.username as string,
         image: "",
-        token,
       },
     });
     return user;
