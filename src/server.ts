@@ -21,7 +21,7 @@ app.use(
   graphqlHTTP({
     schema: rootSchema,
     rootValue: { ...itemResolvers, ...authResolvers },
-    graphiql: process.env.NODE_ENV !== "production" ?? {
+    graphiql: {
       headerEditorEnabled: true,
     },
   })
