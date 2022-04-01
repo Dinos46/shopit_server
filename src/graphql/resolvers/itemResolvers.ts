@@ -3,8 +3,7 @@ import { PrismaClient } from "@prisma/client";
 const prisma: PrismaClient = new PrismaClient();
 
 //getById
-//@ts-ignore
-const getItemById = async (args: any, context: any) => {
+const getItemById = async (args: any) => {
   console.log("FIND BY ID");
   const { id } = args;
   const item = await prisma.item.findUnique({
@@ -65,7 +64,7 @@ const getAllItems = async ({ filter }: any) => {
         },
       },
     });
-    console.log("FIND WITHOUT ARGUMENTS", items);
+    console.log("FIND WITHOUT ARGUMENTS");
 
     return items;
   } catch (err) {
