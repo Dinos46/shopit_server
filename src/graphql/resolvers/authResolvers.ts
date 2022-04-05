@@ -29,7 +29,6 @@ const register = async (args: any) => {
 };
 
 const logIn = async (args: any, context: any) => {
-  // console.log("context.headers", context.headers);
   try {
     const isValid = await _validateRequest(context.headers);
     if (isValid) {
@@ -50,7 +49,23 @@ const logIn = async (args: any, context: any) => {
   }
 };
 
+export const getLogedInUser = async (args: any) => {
+  try {
+    const user = await prisma.user.findUnique({
+      where: {
+        email: args.email,
+      },
+    });
+    if (!user) return null;
+    return user;
+  } catch (err) {
+    console.log(`error from loged in user resolver ${err}`);
+    throw new Error(`error from loged in user resolver ${err}`);
+  }
+};
+
 export const authResolvers = {
   getUser: logIn,
   addUser: register,
+  getLogedInUser,
 };

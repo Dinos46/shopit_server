@@ -12,6 +12,7 @@ type RootQuery {
     items(filter:FilterInput): [Item]!
     item(id:ID!):Item
     getUser(email:String!):User
+    getLogedInUser(email:String!):User
 }
 
 type RootMutation {
