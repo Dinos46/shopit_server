@@ -24,6 +24,7 @@ const getItemById = async (args: any) => {
 
 //get all items in db
 const getAllItems = async ({ filter }: any) => {
+  console.log("FILTER", filter);
   const ctg = filter?.ctg || undefined;
   const name = filter?.name || undefined;
   const maxPrice = +filter?.maxPrice || undefined;

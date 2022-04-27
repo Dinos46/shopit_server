@@ -13,6 +13,7 @@ const _validateRequest = async (headers: any) => {
 };
 
 const register = async (args: any) => {
+  console.log(`ARGS`, args);
   try {
     const user = await prisma.user.create({
       data: {
@@ -23,8 +24,8 @@ const register = async (args: any) => {
     });
     return user;
   } catch (err) {
-    console.log(`error in login resolver`);
-    throw new Error(`error in login resolver ${err}`);
+    console.log(`error in register resolver`, err);
+    throw new Error(`error in register resolver ${err}`);
   }
 };
 
