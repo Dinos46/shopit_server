@@ -9,5 +9,6 @@ export const reviewSchema = `
         userId:String
         itemId:String
         user: User!
+        rating: Float!
     }
 `;
