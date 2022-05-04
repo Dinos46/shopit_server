@@ -39,7 +39,7 @@ model Review {
   updatedAt DateTime @default(now()) @updatedAt 
   user User @relation(fields: [userId],references: [id])
   item Item @relation(fields: [itemId],references: [id])
-  userId String @unique
+  userId String 
   itemId String
 }
 
