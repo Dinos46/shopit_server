@@ -8,3 +8,16 @@ const app = initializeApp({
 });
 
 export const auth = getAuth(app);
+
+export const validateRequest = async (headers: any) => {
+  if (!headers["authorization"]) {
+    return null;
+  }
+  const token = headers["authorization"].split(" ")[1];
+  const idToken = await auth.verifyIdToken(token);
+  if (idToken) {
+    const { email } = idToken;
+    return email;
+  }
+  return null;
+};

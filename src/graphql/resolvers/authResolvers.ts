@@ -1,16 +1,7 @@
-import { auth } from "../../services/firebaseService";
+import { validateRequest } from "../../services/firebaseService";
 import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
-
-const _validateRequest = async (headers: any) => {
-  if (!headers["authorization"]) {
-    return null;
-  }
-  const token = headers["authorization"].split(" ")[1];
-  const idToken = await auth.verifyIdToken(token);
-  return idToken;
-};
 
 const register = async (args: any) => {
   console.log(`ARGS`, args);
@@ -31,8 +22,8 @@ const register = async (args: any) => {
 
 const logIn = async (args: any, context: any) => {
   try {
-    const isValid = await _validateRequest(context.headers);
-    if (isValid) {
+    const res = await validateRequest(context.headers);
+    if (res) {
       const user = await prisma.user.findUnique({
         where: {
           email: args.email,

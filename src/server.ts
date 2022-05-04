@@ -4,6 +4,7 @@ import { graphqlHTTP } from "express-graphql";
 import { rootSchema } from "./graphql/shcema/rootSchema";
 import { itemResolvers } from "./graphql/resolvers/itemResolvers";
 import { authResolvers } from "./graphql/resolvers/authResolvers";
+import { reviewResolver } from "./graphql/resolvers/reviewResolver";
 
 const app = express();
 app.use(express.json());
@@ -20,7 +21,7 @@ app.use(
   "/graphql",
   graphqlHTTP({
     schema: rootSchema,
-    rootValue: { ...itemResolvers, ...authResolvers },
+    rootValue: { ...itemResolvers, ...authResolvers, ...reviewResolver },
     graphiql: {
       headerEditorEnabled: true,
     },
