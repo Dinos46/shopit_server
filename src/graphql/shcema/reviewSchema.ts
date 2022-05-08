@@ -16,7 +16,7 @@ export const reviewSchema = `
         id:ID
         title:String!
         body:String!
-        rating: String!
+        rating: Int!
         itemId:String!
         userId:String! 
     }
