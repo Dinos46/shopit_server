@@ -18,7 +18,7 @@ type RootQuery {
 type RootMutation {
     createItem(itemInput:ItemInput):String!
     addUser(userInput:UserInput):User!
-    addReview(reviewInput:ReviewInput):String
+    addReview(reviewInput:ReviewInput):Review!
     editReview(reviewInput:ReviewInput):String
     deleteReview(reviewId:String!):String
 }

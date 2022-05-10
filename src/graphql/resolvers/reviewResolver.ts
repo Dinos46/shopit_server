@@ -8,7 +8,7 @@ const addReview = async ({ reviewInput }: any, context: any) => {
   try {
     if (email) {
       const { body, rating, title, itemId, userId } = reviewInput;
-      await prisma.review.create({
+      const review = await prisma.review.create({
         data: {
           body,
           rating,
@@ -16,13 +16,14 @@ const addReview = async ({ reviewInput }: any, context: any) => {
           itemId,
           userId,
         },
+        include: { user: true },
       });
-      return "review added successfully";
+      return review;
     }
     throw new Error("must be logged in");
   } catch (err) {
     console.log("error in add resolver", err);
-    throw new Error(`error in add resolver ${err}`);
+    throw new Error(`error in add resolver`);
   }
 };
 

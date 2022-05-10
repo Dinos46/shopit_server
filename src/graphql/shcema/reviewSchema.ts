@@ -9,7 +9,7 @@ export const reviewSchema = `
         userId:String!
         itemId:String!
         user: User!
-        rating: String! 
+        rating: Int!
     }
 
     input ReviewInput {
