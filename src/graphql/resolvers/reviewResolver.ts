@@ -29,24 +29,22 @@ const addReview = async ({ reviewInput }: any, context: any) => {
 
 const editReview = async ({ reviewInput }: any, context: any) => {
   const email = await validateRequest(context.headers);
-
+  const { id, body, rating, title } = reviewInput;
   try {
     if (email) {
-      const review = await prisma.review.findUnique({
-        where: { id: reviewInput.id },
+      const res = await prisma.review.update({
+        where: {
+          id,
+        },
+        data: {
+          body,
+          rating,
+          title,
+        },
         include: { user: true },
       });
-      if (review?.user.email === email) {
-        await prisma.review.update({
-          where: {},
-          data: {
-            body: reviewInput.body,
-            rating: reviewInput.rating,
-            title: reviewInput.title,
-          },
-        });
-        return `review with the id: ${reviewInput.id} was updated`;
-      }
+      console.log(res);
+      return res;
     }
     return;
   } catch (err) {
@@ -57,7 +55,6 @@ const editReview = async ({ reviewInput }: any, context: any) => {
 
 const deleteReview = async ({ reviewId }: any, context: any) => {
   const email = await validateRequest(context.headers);
-
   try {
     if (email) {
       const res = await prisma.review.findUnique({

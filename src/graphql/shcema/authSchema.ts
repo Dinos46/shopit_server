@@ -5,6 +5,18 @@ export const authSchema = `
         email:String!
         username:String!
         image:String
+        role:Roles!
+        cart:[CartItem]
+        createdAt:String!
+        updatedAt:String!
+    }
+
+
+    type CartItem {
+        id:ID!
+        quantity:Int!
+        item:Item!
+        itemId:String!
     }
 
     input UserInput {
@@ -12,4 +24,9 @@ export const authSchema = `
         username:String!
         image:String   
     }
+
+    enum Roles {
+        admin
+        user
+      }
 `;

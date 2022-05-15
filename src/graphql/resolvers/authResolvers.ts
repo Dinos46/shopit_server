@@ -4,7 +4,6 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 const register = async (args: any) => {
-  console.log(`ARGS`, args);
   try {
     const user = await prisma.user.create({
       data: {
@@ -13,7 +12,7 @@ const register = async (args: any) => {
         image: "",
       },
     });
-    return user;
+    return { data: user, status: "" };
   } catch (err) {
     console.log(`error in register resolver`, err);
     throw new Error(`error in register resolver ${err}`);

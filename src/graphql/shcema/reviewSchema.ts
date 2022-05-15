@@ -7,7 +7,7 @@ export const reviewSchema = `
         createdAt:String!
         updatedAt:String!
         userId:String!
-        itemId:String!
+        itemId:String! 
         user: User!
         rating: Int!
     }
@@ -17,7 +17,7 @@ export const reviewSchema = `
         title:String!
         body:String!
         rating: Int!
-        itemId:String!
-        userId:String! 
+        itemId:String
+        userId:String 
     }
 `;

@@ -8,23 +8,51 @@ export const rootSchema = buildSchema(`
     ${authSchema}
     ${reviewSchema}
     
-type RootQuery {
-    items(filter:FilterInput): [Item]!
-    item(id:ID!):Item
-    getUser(email:String!):User
-    getLogedInUser(email:String!):User
-}
+    type RootQuery {
+        items(filter:FilterInput):ItemsResponse!
+        item(id:ID!):ItemResponse!
+        getUser(email:String!):UserResponse!
+        getLogedInUser(email:String!):UserResponse!
+    }
 
-type RootMutation {
-    createItem(itemInput:ItemInput):String!
-    addUser(userInput:UserInput):User!
-    addReview(reviewInput:ReviewInput):Review!
-    editReview(reviewInput:ReviewInput):String
-    deleteReview(reviewId:String!):String
-}
+    type Error {
+        message:String!
+    }
 
-schema {
-    query:RootQuery
-    mutation:RootMutation
-}
+    type UserResponse {
+        error:Error
+        status:String!
+        data:User
+    }
+
+    type ItemResponse {
+        error:Error
+        status:String!
+        data:Item
+    }
+
+    type ItemsResponse {
+        error:Error
+        status:String!
+        data:[Item]
+    }
+    
+    type ReviewResponse {
+        error:Error
+        status:String!
+        data:Review
+    }
+
+    type RootMutation {
+        createItem(itemInput:ItemInput):ItemResponse!
+        addUser(userInput:UserInput):UserResponse!
+        addReview(reviewInput:ReviewInput):ReviewResponse!
+        editReview(reviewInput:ReviewInput):ReviewResponse!
+        deleteReview(reviewId:String!):ReviewResponse!
+    }
+
+    schema {
+        query:RootQuery
+        mutation:RootMutation
+    }
 `);
