@@ -1,6 +1,11 @@
-enum EErrors {}
+export enum EErrors {
+  INVALID_INPUT = "missing arguments",
+  OPERATION_FAILED = "cant perform task",
+  NOT_AUTHORIZED = "not authorized",
+  NOT_FOUND = "not found in db",
+}
 
-enum EStatus {
+export enum EStatus {
   SUCCESS = "success",
   FAILED = "failed",
 }

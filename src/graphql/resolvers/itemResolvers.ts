@@ -1,30 +1,49 @@
 import { PrismaClient } from "@prisma/client";
+import { EErrors, EStatus } from "../../models/respons.model";
 
 const prisma: PrismaClient = new PrismaClient();
 
-//getById
 const getItemById = async (args: any) => {
-  console.log("FIND BY ID");
   const { id } = args;
-  const item = await prisma.item.findUnique({
-    where: {
-      id,
-    },
-    include: {
-      reviews: {
-        include: {
-          user: true,
+  try {
+    if (!id) {
+      return {
+        error: { message: EErrors.OPERATION_FAILED },
+        status: EStatus.FAILED,
+        data: null,
+      };
+    }
+    const item = await prisma.item.findUnique({
+      where: {
+        id,
+      },
+      include: {
+        reviews: {
+          include: {
+            user: true,
+          },
         },
       },
-    },
-  });
-
-  return item;
+    });
+    if (!item) {
+      return {
+        error: { message: EErrors.NOT_FOUND },
+        status: EStatus.FAILED,
+        data: null,
+      };
+    }
+    return { data: item, status: EStatus.SUCCESS, error: null };
+  } catch (err) {
+    console.log("error in get item by id", err);
+    return {
+      error: { message: EErrors.OPERATION_FAILED },
+      status: EStatus.FAILED,
+      data: null,
+    };
+  }
 };
 
-//get all items in db
 const getAllItems = async ({ filter }: any) => {
-  console.log("FILTER", filter);
   const ctg = filter?.ctg || undefined;
   const name = filter?.name || undefined;
   const maxPrice = +filter?.maxPrice || undefined;
@@ -32,7 +51,6 @@ const getAllItems = async ({ filter }: any) => {
 
   try {
     if (ctg || name || maxPrice || minPrice) {
-      console.log("FIND WITH ARGUMENTS");
       const items = await prisma.item.findMany({
         include: {
           reviews: {
@@ -56,7 +74,7 @@ const getAllItems = async ({ filter }: any) => {
           },
         },
       });
-      return items;
+      return { data: items, status: EStatus.SUCCESS, error: null };
     }
     const items = await prisma.item.findMany({
       include: {
@@ -65,12 +83,15 @@ const getAllItems = async ({ filter }: any) => {
         },
       },
     });
-    console.log("FIND WITHOUT ARGUMENTS");
 
-    return items;
+    return { data: items, status: EStatus.SUCCESS, error: null };
   } catch (err) {
-    console.log(`error in get all items resolver`);
-    throw new Error(`error in get all items resolver ${err}`);
+    console.log(`error in get all items resolver`, err);
+    return {
+      error: { message: EErrors.OPERATION_FAILED },
+      status: EStatus.FAILED,
+      data: null,
+    };
   }
 };
 

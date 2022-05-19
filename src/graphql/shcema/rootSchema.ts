@@ -8,13 +8,6 @@ export const rootSchema = buildSchema(`
     ${authSchema}
     ${reviewSchema}
     
-    type RootQuery {
-        items(filter:FilterInput):ItemsResponse!
-        item(id:ID!):ItemResponse!
-        getUser(email:String!):UserResponse!
-        getLogedInUser(email:String!):UserResponse!
-    }
-
     type Error {
         message:String!
     }
@@ -43,12 +36,25 @@ export const rootSchema = buildSchema(`
         data:Review
     }
 
+    type ReviewResponseDel {
+        error:Error
+        status:String!
+        data:String
+    }
+
     type RootMutation {
         createItem(itemInput:ItemInput):ItemResponse!
         addUser(userInput:UserInput):UserResponse!
         addReview(reviewInput:ReviewInput):ReviewResponse!
         editReview(reviewInput:ReviewInput):ReviewResponse!
-        deleteReview(reviewId:String!):ReviewResponse!
+        deleteReview(reviewId:String!):ReviewResponseDel!
+    }
+
+    type RootQuery {
+        items(filter:FilterInput):ItemsResponse!
+        item(id:ID!):ItemResponse!
+        getUser(email:String!):UserResponse!
+        getLogedInUser(email:String!):UserResponse!
     }
 
     schema {
