@@ -24,7 +24,7 @@ const register = async ({ userInput }: any) => {
     });
     return { data: user, status: EStatus.SUCCESS, error: null };
   } catch (err) {
-    console.log(`error in register resolver`, err.data);
+    console.log(`error in register resolver`, err);
     return {
       error: { message: EErrors.OPERATION_FAILED },
       status: EStatus.FAILED,
@@ -50,11 +50,21 @@ const logIn = async ({ email }: any, context: any) => {
         data: null,
       };
     }
+
+    if (email !== res) {
+      return {
+        error: { message: EErrors.NOT_AUTHORIZED },
+        status: EStatus.FAILED,
+        data: null,
+      };
+    }
+
     const user = await prisma.user.findUnique({
       where: {
         email,
       },
     });
+
     if (!user) {
       return {
         error: { message: EErrors.NOT_FOUND },
@@ -62,6 +72,7 @@ const logIn = async ({ email }: any, context: any) => {
         data: null,
       };
     }
+
     return { data: user, status: EStatus.SUCCESS, error: null };
   } catch (err) {
     console.log(`error in login resolver`, err);
@@ -73,40 +84,40 @@ const logIn = async ({ email }: any, context: any) => {
   }
 };
 
-export const getLogedInUser = async ({ email }: any) => {
-  try {
-    if (!email) {
-      return {
-        error: { message: EErrors.INVALID_INPUT },
-        status: EStatus.FAILED,
-        data: null,
-      };
-    }
-    const user = await prisma.user.findUnique({
-      where: {
-        email,
-      },
-    });
-    if (!user) {
-      return {
-        error: { message: EErrors.NOT_FOUND },
-        status: EStatus.FAILED,
-        data: null,
-      };
-    }
-    return { data: user, status: EStatus.SUCCESS, error: null };
-  } catch (err) {
-    console.log(`error from loged in user resolver ${err}`);
-    return {
-      error: { message: EErrors.OPERATION_FAILED },
-      status: EStatus.FAILED,
-      data: null,
-    };
-  }
-};
+// export const getLogedInUser = async ({ email }: any) => {
+//   try {
+//     if (!email) {
+//       return {
+//         error: { message: EErrors.INVALID_INPUT },
+//         status: EStatus.FAILED,
+//         data: null,
+//       };
+//     }
+//     const user = await prisma.user.findUnique({
+//       where: {
+//         email,
+//       },
+//     });
+//     if (!user) {
+//       return {
+//         error: { message: EErrors.NOT_FOUND },
+//         status: EStatus.FAILED,
+//         data: null,
+//       };
+//     }
+//     return { data: user, status: EStatus.SUCCESS, error: null };
+//   } catch (err) {
+//     console.log(`error from loged in user resolver ${err}`);
+//     return {
+//       error: { message: EErrors.OPERATION_FAILED },
+//       status: EStatus.FAILED,
+//       data: null,
+//     };
+//   }
+// };
 
 export const authResolvers = {
   getUser: logIn,
   addUser: register,
-  getLogedInUser,
+  // getLogedInUser,
 };
