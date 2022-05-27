@@ -7,7 +7,9 @@ dotenv.config();
 const firebaseCreds = {
   type: process.env.FB_TYPE,
   project_id: process.env.FB_PROJECT_ID,
-  private_key: process.env.FB_TYPE_PRIVATE_KEY?.replace(/\\n/g, "\n"),
+  private_key: JSON.parse(
+    process.env.FB_TYPE_PRIVATE_KEY?.replace(/\\n/g, "\n") as string
+  ),
   client_email: process.env.FB_TYPE_CKIENT_EMAIL,
   client_id: process.env.FB_TYPE_CKIENT_ID,
   auth_uri: process.env.FB_TYPE_AUTH_URI,
