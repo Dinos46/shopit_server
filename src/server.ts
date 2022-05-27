@@ -28,7 +28,7 @@ app.use(
   })
 );
 
-app.get("/*", (_, res: express.Response) => {
+app.get("/favicon.ico", (_, res: express.Response) => {
   res.send("shopit fake store");
 });
 
