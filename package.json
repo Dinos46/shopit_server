@@ -7,7 +7,7 @@
     "build": "tsc",
     "dev": "set NODE_ENV=development&&ts-node ./src/server.ts",
     "watch": "set NODE_ENV=development&&nodemon --watch src/** --ext ts,json --ignore src/**/*.spec.ts --exec ts-node-dev  ./src/server.ts ",
-    "start": "node server.js"
+    "start": "node ./dist/server.js"
   },
   "keywords": [],
   "author": "Din Ben Elisha",
