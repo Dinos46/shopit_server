@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "shopit-fake-store",
+  "private_key_id": "0ac0b7ef1fe0fb225f89c223c6d570d6f409e905",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQDAVauNHjC3yduO\nFywtlf428L2cnRwznnihO09qs00WYl1ATfCyRfd3DGjUTSXh0a2dbR1l6NEivMTO\nRh4pYa+C4Cc+fBuRP18JvIvT96w6qw9DKOkS5dyzLUJTu0VSwL4JS2p1EzUSHjfc\nhr585QR8GYAAwamgIHdUElwU5fyy6b5HvKSX7/vCwLMhgNsIpDHy+BdW9VfdEv+A\nDeJ2p7CrL77hVyScExLekz5JmPaSVWpZxRb5a75GcDRhYs9FGmdN54qsESFw2bfK\n1AQihFyN8KKcTY0w5Qy3Mi+IpZIdhoxBLtpKOP0ruUAT/e3f0pKmc+U1KjtlxoMt\nxqxZpYO7AgMBAAECggEADfWJzGWvCn/DiBYFdk+HEky5rka218Y+IhGQa4GU7DV6\naCLf/8hVNBY5+4KX58JUk/Lp6c4Sc694pzHumXlGCD0ljALs60dKqgW9rkYxAVcN\n9gVfmSgGsxhrUnFqkB1+DWWkVdfth6Ga004SQDVM9IbTQ/rKSV1h27+zYC7q/r8Y\nyEWVtRh5HnmbORN1L9pZff6MqRmkPlffLivT6nhFi/WlyyJ3IRCGQWVOuOtBZhIP\nMxShpdZ0h/lr7UGyFkK1VIOIlhmvMEWcLKAE7u+kUDPwjgNeEOHNk0mmNc24+OmR\nQuCKjeZKLI1Q25HlIHn3O9UWsbVXK1RyGIWt+T7deQKBgQD6C03n54PlbwrUkHZH\nQgXxnMNxF0AyIoiERC0m2oCIgtOXLbEjxl84vLIW/jLGDV9M7zSIu0kDknVrWRmn\nx5JdACfRUragknV2wtETx5f23CEjezFsFdM09dYbu3DP58gyR1Kd24Ww8fMSbz3d\n2sn7rmkGbZStU9ScaFc/X8O5+QKBgQDE6nhfRd+oDOWLUouZYii9xnKCJ109Mgth\nsYfDDFU6EVBokWCdGkoMrLUl/ZocGohOK68PVZG3J5cBnZsUEDRzgxDoYaeBfXGa\nw+rZznknIstWqI4Jko8/i11zLNKnpFgAVwkE1qMlwIrtF2Akjy/y01GyhdAeb51F\nlCyUgv/4UwKBgFfUGK1YmO/CLV+0zpcBDe1sTwouTJJPpvwupl17aqKIsaHsnsge\nKdxYC4YgC92dXNg9PYq5nk/u5eerCGPyqeqY32ObViLYzwHENIRqG2rOr6Uy5I0+\nrU1w/KAJGvssQxnGC7L/JNqeYe8bu/Nton0RKjrjytGHHKtDy0GrdaihAoGAYWI/\n04Y/3OE76FITXfDQi0IIQVvsXaZRQKhGpuyDfaswY/Z5nFhzBJ+pGre3rmxkupwa\nAHBmFvlKUe860YpOFk5cX0BkUcLTGyIHFF5rRjKL8zh6vjswAtIOjjY9m9DIAKsK\nd80adEIrsqNb1djGcsWVYr+QtGyoj89+2JeMtacCgYAKIMeIeNU/699NCCXPCCaX\nCcF7fo/4KLAKaBGz7Mu/5tOYPC74TP412IkuSJwc5SZGgrsDcFp/yN7Y8BqUCE3I\nSB0tTQR8uYtVrqUG1qSBmQZ6H2ekF0ib1dj/42ILIyfwZYWeqHD89W4u4wwFRIqe\n4JtYLjSpVHFmjR7yQEpY1Q==\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-adminsdk-6h4qt@shopit-fake-store.iam.gserviceaccount.com",
+  "client_id": "105835329428850086850",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-6h4qt%40shopit-fake-store.iam.gserviceaccount.com"
+}
