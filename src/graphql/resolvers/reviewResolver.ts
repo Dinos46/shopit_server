@@ -26,7 +26,7 @@ const addReview = async ({ reviewInput }: any, context: any) => {
       data: {
         body,
         rating,
-        title,
+        title, //
         itemId,
         userId,
       },
