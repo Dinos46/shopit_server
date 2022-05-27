@@ -4,20 +4,21 @@ import { credential, ServiceAccount } from "firebase-admin";
 import dotenv from "dotenv";
 dotenv.config();
 
-const firebaseCreds = {
-  type: process.env.FB_TYPE,
-  project_id: process.env.FB_PROJECT_ID,
-  private_key: process.env.FB_TYPE_PRIVATE_KEY,
-  client_email: process.env.FB_TYPE_CKIENT_EMAIL,
-  client_id: process.env.FB_TYPE_CKIENT_ID,
-  auth_uri: process.env.FB_TYPE_AUTH_URI,
-  token_uri: process.env.FB_TYPE_TOKEN_URI,
-  auth_provider_x509_cert_url: process.env.FB_TYPE_AUTH_PROVIDER_X509_CERT_UR,
-  client_x509_cert_url: process.env.FB_TYPE_CLIENT_X509_CERT_URL,
-} as ServiceAccount;
+// const firebaseCreds = {
+//   type: process.env.FB_TYPE,
+//   project_id: process.env.FB_PROJECT_ID,
+//   private_key: process.env.FB_TYPE_PRIVATE_KEY,
+//   client_email: process.env.FB_TYPE_CKIENT_EMAIL,
+//   client_id: process.env.FB_TYPE_CKIENT_ID,
+//   auth_uri: process.env.FB_TYPE_AUTH_URI,
+//   token_uri: process.env.FB_TYPE_TOKEN_URI,
+//   auth_provider_x509_cert_url: process.env.FB_TYPE_AUTH_PROVIDER_X509_CERT_UR,
+//   client_x509_cert_url: process.env.FB_TYPE_CLIENT_X509_CERT_URL,
+// } as ServiceAccount;
+var serviceAccount = require("path/to/serviceAccountKey.json");
 
 const app = initializeApp({
-  credential: credential.cert(firebaseCreds),
+  credential: credential.cert(serviceAccount),
 });
 
 export const auth = getAuth(app);
