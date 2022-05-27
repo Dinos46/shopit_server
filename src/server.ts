@@ -17,10 +17,6 @@ app.use(express.json());
 // }
 app.use(cors());
 
-app.get("/", (_, res: express.Response) => {
-  res.send("shopit fake store");
-});
-
 app.use(
   "/graphql",
   graphqlHTTP({
@@ -31,6 +27,10 @@ app.use(
     },
   })
 );
+
+app.get("/**", (_, res: express.Response) => {
+  res.send("shopit fake store");
+});
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () =>
