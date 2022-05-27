@@ -48,7 +48,6 @@ const getAllItems = async ({ filter }: any) => {
   const name = filter?.name || undefined;
   const maxPrice = +filter?.maxPrice || undefined;
   const minPrice = +filter?.minPrice || undefined;
-
   try {
     if (ctg || name || maxPrice || minPrice) {
       const items = await prisma.item.findMany({

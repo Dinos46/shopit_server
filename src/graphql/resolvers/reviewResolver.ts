@@ -32,6 +32,7 @@ const addReview = async ({ reviewInput }: any, context: any) => {
       },
       include: { user: true },
     });
+    console.log(review);
     return { data: review, status: EStatus.SUCCESS, error: null };
   } catch (err) {
     console.log("error in add resolver", err);

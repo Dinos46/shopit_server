@@ -44,7 +44,7 @@ export const rootSchema = buildSchema(`
 
     type RootMutation {
         createItem(itemInput:ItemInput):ItemResponse!
-        addUser(userInput:UserInput):UserResponse!
+        register(userInput:UserInput):UserResponse!
         addReview(reviewInput:ReviewInput):ReviewResponse!
         editReview(reviewInput:ReviewInput):ReviewResponse!
         deleteReview(reviewId:String!):ReviewResponseDel!
@@ -53,7 +53,7 @@ export const rootSchema = buildSchema(`
     type RootQuery {
         items(filter:FilterInput):ItemsResponse!
         item(id:ID!):ItemResponse!
-        getUser(email:String!):UserResponse!
+        logIn(email:String!):UserResponse!
         getLogedInUser(email:String!):UserResponse!
     }
 
