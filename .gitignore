@@ -7,7 +7,7 @@
 /backend.log
 /.pnp
 .pnp.js
-
+/config
 # testing
 /coverage
 
