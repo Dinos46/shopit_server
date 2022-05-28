@@ -15,8 +15,6 @@ const firebaseCreds = {
   auth_provider_x509_cert_url: process.env.FB_TYPE_AUTH_PROVIDER_X509_CERT_UR,
   client_x509_cert_url: process.env.FB_TYPE_CLIENT_X509_CERT_URL,
 } as ServiceAccount;
-// var serviceAccount = require("../../config/firebaseConfig.json");//
-// privateKey: process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, '\n')
 
 const app = initializeApp({
   credential: credential.cert(firebaseCreds),
