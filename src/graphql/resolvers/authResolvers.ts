@@ -6,7 +6,7 @@ const prisma = new PrismaClient();
 
 const register = async ({ userInput }: any) => {
   const { email, username } = userInput;
-
+  console.log(userInput);
   try {
     if (!email && !username) {
       return {
