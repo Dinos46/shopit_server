@@ -6,16 +6,10 @@ import { itemResolvers } from "./graphql/resolvers/itemResolvers";
 import { authResolvers } from "./graphql/resolvers/authResolvers";
 import { reviewResolver } from "./graphql/resolvers/reviewResolver";
 
-const app = express();
-app.use(express.json());
 const isProd = process.env.NODE_ENV === "production";
 
-// if (process.env.NODE_ENV !== 'production') {
-//   const corsOptions = {
-//     origin: ['http://127.0.0.1:3000', 'http://localhost:3000'],
-//     credentials: true,
-//   };
-// }
+const app = express();
+app.use(express.json());
 app.use(cors());
 
 app.use(
