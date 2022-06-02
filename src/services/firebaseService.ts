@@ -1,6 +1,6 @@
 import { getAuth } from "firebase-admin/auth";
 import { initializeApp } from "firebase-admin/app";
-import { credential } from "firebase-admin";
+import { credential, ServiceAccount } from "firebase-admin";
 import dotenv from "dotenv";
 dotenv.config();
 
@@ -14,9 +14,8 @@ const firebaseCreds = {
   token_uri: process.env.FB_TYPE_TOKEN_URI,
   auth_provider_x509_cert_url: process.env.FB_TYPE_AUTH_PROVIDER_X509_CERT_UR,
   client_x509_cert_url: process.env.FB_TYPE_CLIENT_X509_CERT_URL,
-} as any;
+} as ServiceAccount;
 
-console.log(firebaseCreds.private_key);
 const app = initializeApp({
   credential: credential.cert(firebaseCreds),
 });
