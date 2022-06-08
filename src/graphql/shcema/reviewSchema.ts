@@ -17,7 +17,7 @@ export const reviewSchema = `
         title:String!
         body:String!
         rating: Int!
-        itemId:String!
-        userId:String!
+        itemId:String
+        userId:String
     }
 `;
