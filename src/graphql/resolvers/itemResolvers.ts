@@ -58,6 +58,7 @@ const getAllItems = async ({ filter }: any) => {
 
       return { data: items, status: EStatus.SUCCESS, error: null };
     }
+
     const items = await _getFiltered(query);
 
     return items;
@@ -72,7 +73,6 @@ const getAllItems = async ({ filter }: any) => {
 };
 
 const _getFiltered = async (filter: any) => {
-  console.log("first", filter);
   try {
     const items = await prisma.item.findMany({
       include: {
@@ -117,7 +117,6 @@ const _buildFilter = (filter: any) => {
       obj[key] = filter[key];
     }
   });
-  console.log("OBj", obj);
   return obj;
 };
 

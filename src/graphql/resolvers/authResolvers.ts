@@ -32,9 +32,8 @@ const register = async ({ userInput }: any) => {
     };
   }
 };
-//@ts-ignore
-const logIn = async ({ email }: any, context: any) => {
-  console.log("get");
+
+const logIn = async ({ email }: any) => {
   try {
     if (!email) {
       return {
@@ -43,22 +42,6 @@ const logIn = async ({ email }: any, context: any) => {
         data: null,
       };
     }
-    // const res = await validateRequest(context.headers);
-    // if (!res) {
-    //   return {
-    //     error: { message: EErrors.NOT_AUTHORIZED },
-    //     status: EStatus.FAILED,
-    //     data: null,
-    //   };
-    // }
-
-    // if (email !== res) {
-    //   return {
-    //     error: { message: EErrors.NOT_AUTHORIZED },
-    //     status: EStatus.FAILED,
-    //     data: null,
-    //   };
-    // }
 
     const user = await prisma.user.findUnique({
       where: {

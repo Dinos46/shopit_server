@@ -7,6 +7,7 @@ const prisma: PrismaClient = new PrismaClient();
 const addReview = async ({ reviewInput }: any, context: any) => {
   const email = await validateRequest(context.headers);
   const { body, rating, title, itemId, userId } = reviewInput;
+  console.log(reviewInput);
   try {
     if (!email) {
       return {
@@ -26,7 +27,7 @@ const addReview = async ({ reviewInput }: any, context: any) => {
       data: {
         body,
         rating,
-        title, //
+        title,
         itemId,
         userId,
       },
