@@ -28,6 +28,8 @@ model User {
   reviews Review[] 
   role Role @default(user)
   cart Cart_Item[]
+
+  @@index([email])
 }
 
 model Review {
@@ -41,6 +43,8 @@ model Review {
   item Item @relation(fields: [itemId],references: [id])
   userId String 
   itemId String
+
+  @@index([itemId,userId])
 }
 
 
@@ -51,6 +55,8 @@ model Cart_Item {
   user User @relation(fields: [userId],references: [id])
   itemId String
   userId String
+
+  @@index([userId])
 }
 
 enum Role {

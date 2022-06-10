@@ -2,7 +2,9 @@ import { PrismaClient } from "@prisma/client";
 import { EErrors, EStatus } from "../../models/respons.model";
 import { validateRequest } from "../../services/firebaseService";
 
-const prisma: PrismaClient = new PrismaClient();
+const prisma: PrismaClient = new PrismaClient({
+  log: ["info", "query"],
+});
 
 const addReview = async ({ reviewInput }: any, context: any) => {
   const email = await validateRequest(context.headers);
